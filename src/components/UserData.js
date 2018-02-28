@@ -15,6 +15,7 @@ class UserData extends Component {
   }
 
   componentWillReceiveProps({userName}) {
+    this.setState({ loadedRepos: false});
     axios.get(`${URL}/${userName}`)
       .then(res => {
         this.setState({ profile: res.data, loadedProfile: true});
