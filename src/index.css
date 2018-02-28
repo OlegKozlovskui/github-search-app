@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.form-inline {
+    margin: 0 auto 30px;
+    justify-content: center;
+}
