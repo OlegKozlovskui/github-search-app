@@ -5,6 +5,10 @@ body {
 }
 
 .form-inline {
-    margin: 0 auto 30px;
-    justify-content: center;
+  margin: 0 auto 30px;
+  justify-content: center;
+}
+
+.title {
+  margin-top: 50px;
 }

@@ -4,31 +4,38 @@ import axios from 'axios';
 import UserProfile from './UserProfile';
 import UserRepos from './UserRepos';
 
-const PROFILE_URL = 'https://api.github.com/users';
-const REPO_URL = 'https://api.github.com/search/users';
+const URL = 'https://api.github.com/users';
 
 class UserData extends Component {
   state = {
     profile: {},
     repos: [],
     loadedProfile: false,
+    loadedRepos: false,
   }
 
   componentWillReceiveProps({userName}) {
-    axios.get(`${PROFILE_URL}/${userName}`)
+    axios.get(`${URL}/${userName}`)
       .then(res => {
         this.setState({ profile: res.data, loadedProfile: true});
       }).catch(err => {
         this.setState({ loadedProfile: false});
-    })
+    });
+
+    axios.get(`${URL}/${userName}/repos`)
+      .then(res => {
+        console.log('res.data', res.data)
+        this.setState({ repos: res.data, loadedRepos: true});
+      }).catch(err => {
+        this.setState({ loadedRepos: false});
+    });
   }
 
   render() {
-    const userData = ( <UserRepos />);
     return (
       <div>
         {this.state.loadedProfile && <UserProfile user={this.state.profile} />}
-        {/*{this.state.loaded && <UserProfile user={this.state.profile} />}*/}
+        {this.state.loadedRepos && <UserRepos repos={this.state.repos} />}
       </div>
     );
   }

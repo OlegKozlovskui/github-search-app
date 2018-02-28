@@ -2,7 +2,6 @@ import React from 'react';
 import dateformat from 'dateformat';
 
 const UserProfile = ({user}) => {
-  console.log('Profile', user);
   return (
     <div className="row">
       <div className="col-md-4">
