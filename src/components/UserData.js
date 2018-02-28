@@ -21,20 +21,24 @@ class UserData extends Component {
       }).catch(err => {
         this.setState({ loadedProfile: false});
     });
+  }
 
-    axios.get(`${URL}/${userName}/repos`)
-      .then(res => {
-        console.log('res.data', res.data)
-        this.setState({ repos: res.data, loadedRepos: true});
-      }).catch(err => {
+  showRepo = () => {
+    if(this.state.profile.public_repos) {
+      axios.get(`${URL}/${this.props.userName}/repos`)
+        .then(res => {
+          this.setState({ repos: res.data, loadedRepos: true});
+        }).catch(err => {
         this.setState({ loadedRepos: false});
-    });
+      });
+    }
   }
 
   render() {
     return (
       <div>
         {this.state.loadedProfile && <UserProfile user={this.state.profile} />}
+        {this.state.loadedProfile && <button onClick={this.showRepo} className="btn btn-primary">Repos</button>}
         {this.state.loadedRepos && <UserRepos repos={this.state.repos} />}
       </div>
     );
