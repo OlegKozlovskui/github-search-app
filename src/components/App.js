@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Navigation from '../components/Navigation';
 import Search from '../components/Search';
+import UserData from "./UserData";
 
 class App extends Component {
   state = {
@@ -18,7 +19,8 @@ class App extends Component {
         <Navigation />
         <div className="container">
           <br/>
-          <Search userName={this.onSearch}/>
+          <Search userName={this.onSearch} />
+          <UserData userName={this.state.userName} />
         </div>
       </div>
     );
